@@ -1,21 +1,18 @@
-import Vue from 'nativescript-vue';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import counter from './modules/counter';
+import service from './modules/service';
+import utill from './modules/service';
 
 Vue.use(Vuex, VueAxios, axios);
 
 const debug = process.env.NODE_ENV !== 'production';
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   modules: {
     service,
     utill,
   },
   strict: debug,
 });
-
-Vue.prototype.$store = store;
-
-module.exports = store;
