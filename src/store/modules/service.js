@@ -2,54 +2,17 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 const state = {
-  pharmacies: [{
-        ":@computed_region_dam5_q64j": "1040",
-        ":@computed_region_m4y2_whse": "161",
-        ":@computed_region_nhmp_cq6b": "212",
-        ":@computed_region_snd5_k6zv": "9",
-        "address": "5 RIVER ROAD",
-        "city": "WILTON",
-        "credential": "PCY.0001849",
-        "credentialid": "351206",
-        "location_1": {
-            "type": "Point",
-            "coordinates": [
-                -73.430411,
-                41.190978
-            ]
-        },
-        "location_1_address": "5 RIVER ROAD",
-        "location_1_city": "CT",
-        "location_1_zip": "06897",
-        "pharmacy_name": "STOP & SHOP PHARMACY #658",
-        "phone": "2038342204",
-        "state": "CT",
-        "zip": "06897"
-    },
-    {
-        ":@computed_region_dam5_q64j": "1040",
-        ":@computed_region_m4y2_whse": "161",
-        ":@computed_region_nhmp_cq6b": "212",
-        ":@computed_region_snd5_k6zv": "9",
-        "address": "28 CENTER ST",
-        "city": "WILTON",
-        "credential": "PCY.0002343",
-        "credentialid": "1383339",
-        "location_1": {
-            "type": "Point",
-            "coordinates": [
-                -73.43278,
-                41.194945
-            ]
-        },
-        "location_1_address": "28 CENTER ST",
-        "location_1_city": "CT",
-        "location_1_zip": "06897-3007",
-        "pharmacy_name": "LANGS PHARMACY OF WILTON CENTER",
-        "phone": "(203) 241-4711",
-        "state": "CT",
-        "zip": "06897-3007"
-    }],
+  pharmacies:
+  {
+    address : null,
+    city: null,
+    location_name: null,
+    lat: 0,
+    long: 0,
+    phone: null,
+    state: null,
+    zip: null,
+  },
 };
 
 const getters = {
@@ -58,7 +21,18 @@ const getters = {
 
 const mutations = {
   setPharmacies(state, pharmacyObject){
-    state.pharmacies = pharmacyObject;
+    for (var i = 0; i < pharmacyObject.length; i++)
+    {
+      state.pharmacies.address = pharmacyObject[i].address;
+      state.pharmacies.city = pharmacyObject[i].city;
+      state.pharmacies.location_name = pharmacyObject[i].location_name;
+      state.pharmacies.lat = pharmacyObject[i].location_1.coordinates[1];
+      state.pharmacies.long = pharmacyObject[i].location_1.coordinates[0];
+      state.pharmacies.phone = pharmacyObject[i].phone;
+      state.pharmacies.state = pharmacyObject[i].state;
+      state.pharmacies.zip = pharmacyObject[i].zip;
+      console.log("loop");
+    }
   }
 };
 
@@ -90,6 +64,7 @@ const actions = {
         console.log(error.config);
     });
   },
+
   hello({commit}){
     console.log("hi")
   }
