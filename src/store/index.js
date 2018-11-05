@@ -10,9 +10,9 @@ Vue.use(Vuex, VueAxios, axios);
 const debug = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
-  modules: {
-    service,
-    utill,
-  },
-  strict: debug,
+   modules: {
+      service,
+      utill,
+   },
+   strict: debug,
 });

@@ -1,10 +1,13 @@
 # Addiction Help
 This project is made for the College Tech Challenge FALL 2018. Connecticut ranks the highest state in opiate abuse and deaths. In response, the state has provided numerous resources to help individuals and families struggling with opiate abuse. The goal of the project is to develop an accessible web-based application that inform users about opiate addiction and direct them to state resources.
 ## Prerequisites
+* [Git](https://git-scm.com/downloads)
+* [Node.js](https://nodejs.org/en/)
+* [Vuejs CLI](https://cli.vuejs.org/guide/installation.html)
+* [Vuex](https://vuex.vuejs.org/installation.html)
 
-* Node.js https://nodejs.org/en/
-* Vuejs CLI https://cli.vuejs.org/guide/installation.html
-* Vuex https://vuex.vuejs.org/installation.html
+### Running
+1. Open git bash in the directory you want to download the project to and runn command < git clone 
 
 ### Getting Started with Vuejs
 1. Setup Node.js
@@ -21,9 +24,9 @@ This project is made for the College Tech Challenge FALL 2018. Connecticut ranks
 
 | Plans        | functionality    | Progress  |
 | ------------- |:-------------:| -----:|
-| Create Project with Vuejs      | language/framework requirement |  in progress  |
+| Create Project with Vuejs      | language/framework requirement |  Done  |
 |   Project is structed with Vuex    | state management     |  in progress   |
-|App runs on browser | app requirement| in progress|
+|App runs on browser | app requirement| Done|
 | Use data.ct.gov  | get data from api call    |    in progress    |
 | Use google maps API  | implement custom google maps     |    in progress    |
 
@@ -67,7 +70,7 @@ This project is made for the College Tech Challenge FALL 2018. Connecticut ranks
 ```
 
 ```
-### Aurhors
+### Authors
 * [**Jun Li**](https://github.com/june11084)
 * [**Vu Truong**](https://github.com/hirovu)
 

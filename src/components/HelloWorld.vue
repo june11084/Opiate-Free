@@ -1,13 +1,13 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
+   <div class="hello">
+      <h1>{{ msg }}</h1>
+      <p>
       For guide and recipes on how to configure / customize this project,<br>
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <p v-on:click="listOfPharmacies = getPharmacies">Pharmacies: {{listOfPharmacies}}</p>
-  </div>
+      </p>
+      <p v-on:click="listOfPharmacies = getPharmacies">Pharmacies: {{listOfPharmacies}}</p>
+   </div>
 </template>
 
 <script>
@@ -16,34 +16,33 @@ import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-  data() {
-    return{
-      listOfPharmacies:1,
-    }
-  },
-  computed: {
-    ...mapState({
-      getPharmacies: state => state.service.pharmacies,
-    }),
-    ...mapGetters({
-    }),
-  },
-  methods: {
-    ...mapActions([
-      'getPharmacyApi',
-      'hello'
-    ])
-  },
-  created() {
-    return this.getPharmacyApi().then(() => {
-      console.log("ran")
-      console.log("end")
-    })
-  }
+   name: 'HelloWorld',
+   props: {
+   msg: String
+   },
+   data() {
+      return{
+         listOfPharmacies:1,
+      }
+   },
+   computed: {
+      ...mapState({
+         getPharmacies: state => state.service.pharmacyList,
+      }),
+      ...mapGetters({
+      }),
+   },
+   methods: {
+      ...mapActions([
+         'getPharmacyApi',
+         'hello'
+      ])
+   },
+   created() {
+      return this.getPharmacyApi().then(() => {
+
+      });
+   }
 }
 </script>
 
