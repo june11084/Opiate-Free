@@ -1,6 +1,6 @@
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+import { GOOGLE_API_KEY } from '../../.././config'
 const state = {
    pharmacyList:[],
    pharmacies:
@@ -14,6 +14,7 @@ const state = {
       state: null,
       zip: null,
    },
+   API_KEY: GOOGLE_API_KEY,
 };
 
 const getters = {
@@ -56,6 +57,7 @@ const actions = {
          let pharmacyObject = response.data;
          commit('setPharmacies', pharmacyObject)
          console.log("setPharmacies finished ");
+         console.log(state.API_KEY);
       }).catch(function (error) {
          if(error.response) {
             console.log(error.response.data);

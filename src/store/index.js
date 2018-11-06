@@ -4,6 +4,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import service from './modules/service';
 import utill from './modules/service';
+import {config} from '../.././config.js'
 
 Vue.use(Vuex, VueAxios, axios);
 
