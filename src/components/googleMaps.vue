@@ -1,12 +1,32 @@
 <template>
    <div class="hello">
       <h1>{{ msg }}</h1>
-      <p>
-      For guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-      </p>
-      <p v-on:click="listOfPharmacies = getPharmacies">Pharmacies: {{listOfPharmacies}}</p>
+      <div>
+         <div>
+            <h2>Search and add a pin</h2>
+            <label>
+               <gmap-autocomplete
+               @place_changed="setPlace">
+               </gmap-autocomplete>
+               <button @click="addMarker">Add</button>
+            </label>
+            <br/>
+
+         </div>
+         <br>
+         <gmap-map
+            :center="center"
+            :zoom="12"
+            style="width:100%;  height: 400px;"
+            >
+            <gmap-marker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            @click="center=m.position"
+            ></gmap-marker>
+         </gmap-map>
+      </div>
    </div>
 </template>
 
@@ -15,15 +35,18 @@ import store from '.././store'
 import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex'
-
 export default {
-   name: 'HelloWorld',
+   name: 'googleMaps',
    props: {
    msg: String
    },
    data() {
       return{
          listOfPharmacies:1,
+         center: { lat: 45.508, lng: -73.587 },
+         markers: [],
+         places: [],
+         currentPlace: null
       }
    },
    computed: {
@@ -36,7 +59,8 @@ export default {
    methods: {
       ...mapActions([
          'getPharmacyApi',
-         'hello'
+         'hello',
+         'initMap'
       ])
    },
    created() {
