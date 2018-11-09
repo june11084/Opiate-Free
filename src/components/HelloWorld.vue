@@ -1,4 +1,5 @@
 <template>
+
    <div class="hello">
       <h1>{{ msg }}</h1>
       <p>
@@ -16,33 +17,33 @@ import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex'
 export default {
-   name: 'HelloWorld',
-   props: {
-   msg: String
-   },
-   data() {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  },
+  data() {
       return{
-         listOfPharmacies:1,
+        listOfPharmacies:1,
       }
-   },
-   computed: {
-      ...mapState({
-         getPharmacies: state => state.service.pharmacyList,
-      }),
-      ...mapGetters({
-      }),
-   },
-   methods: {
-      ...mapActions([
-         'getPharmacyApi',
-         'hello'
-      ])
-   },
-   created() {
-      return this.getPharmacyApi().then(() => {
+  },
+  computed: {
+    ...mapState({
+      getPharmacies: state => state.service.pharmacyList,
+    }),
+    ...mapGetters({
+    }),
+  },
+  methods: {
+    ...mapActions([
+      'getPharmacyApi',
+      'hello'
+    ])
+  },
+  created() {
+    return this.getPharmacyApi().then(() => {
 
-      });
-   }
+    });
+  }
 }
 </script>
 
