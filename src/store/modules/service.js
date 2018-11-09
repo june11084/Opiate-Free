@@ -21,25 +21,36 @@ const getters = {
 }
 
 const mutations = {
-   setPharmacies(state, pharmacyObject){
-      var count = 0;
-      for(var i = 0; i <pharmacyObject.length; i++){
-         state.pharmacies.address = pharmacyObject[i].address;
-         state.pharmacies.city = pharmacyObject[i].city;
-         state.pharmacies.location_name = pharmacyObject[i].location_name;
-         state.pharmacies.phone = pharmacyObject[i].phone;
-         state.pharmacies.state = pharmacyObject[i].state;
-         state.pharmacies.zip = pharmacyObject[i].zip;
-         if("location_1" in pharmacyObject[i]){
-            state.pharmacies.lat = pharmacyObject[i].location_1.coordinates[1];
-            state.pharmacies.long = pharmacyObject[i].location_1.coordinates[0];
-            count++;
-         }else{
-         }
-         state.pharmacyList.push(state.pharmacies);
-      };
-      console.log(count)
-   }
+  setPharmacies(state, pharmacyObject){
+    var hasCoordinates = 0; //Counts entries that has coordinates
+    var noCoordinates = 0; //Count entries that has no coordinates
+    for (var i = 0; i < pharmacyObject.length; i++)
+    {
+      state.pharmacies.address = pharmacyObject[i].address;
+      state.pharmacies.city = pharmacyObject[i].city;
+      state.pharmacies.location_name = pharmacyObject[i].location_name;
+      if('location_1' in pharmacyObject[i])
+      {
+        //console.log("if statement ran");
+        state.pharmacies.lat = pharmacyObject[i].location_1.coordinates[1];
+        state.pharmacies.long = pharmacyObject[i].location_1.coordinates[0];
+        hasCoordinates++;
+
+      }
+      else {
+        noCoordinates++;
+      }
+      state.pharmacies.phone = pharmacyObject[i].phone;
+      state.pharmacies.state = pharmacyObject[i].state;
+      state.pharmacies.zip = pharmacyObject[i].zip;
+      console.log("loop");
+    }
+    //Console log to check for loop, if-else, and counters
+    console.log(this.pharmacies);
+    console.log(hasCoordinates);
+    console.log(noCoordinates);
+    console.log(pharmacyObject.length);
+  }
 };
 
 const actions = {
