@@ -3,8 +3,8 @@ import Vuex from 'vuex';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import service from './modules/service';
-import utill from './modules/service';
-import googleMaps from './modules/googleMaps';
+import utill from './modules/utill';
+// import googleMaps from './modules/googleMaps';
 import {GOOGLE_API_KEY} from '../.././config.js'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
@@ -21,7 +21,7 @@ export default new Vuex.Store({
    modules: {
       service,
       utill,
-      googleMaps,
    },
    strict: debug,
+   namespaced: true,
 });

@@ -1,12 +1,17 @@
 <template>
    <div class="hello">
       <h1>{{ msg }}</h1>
-      <p>
-      For guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-      </p>
-      <p v-on:click="listOfPharmacies = getPharmacies">Pharmacies: {{listOfPharmacies}}</p>
+      <div>
+         <p v-on:click="listOfPharmacies=pharmacyList">Pharmacies: {{listOfPharmacies}}</p>
+         <br>
+         <GmapMap
+            ref="mapRef"
+            :center="{lat:41.519813, lng:-72.661742}"
+            :zoom="12"
+            style="width:100%;  height: 400px;"
+            >
+         </GmapMap>
+      </div>
    </div>
 </template>
 
@@ -28,21 +33,37 @@ export default {
    },
    computed: {
       ...mapState({
-         getPharmacies: state => state.service.pharmacyList,
+         pharmacyList: state => state.service.pharmacyList,
       }),
       ...mapGetters({
       }),
    },
    methods: {
-      ...mapActions([
-         'getPharmacyApi',
-         'hello'
-      ])
+      ...mapActions({
+         getPharmacyApi: 'getPharmacyApi',
+         increment: 'increment'
+      })
+   },
+   mounted(){
+      return this.getPharmacyApi().then(() => {
+         this.$refs.mapRef.$mapPromise.then((map) => {
+            console.log(this.pharmacyList.length)
+            var markerArray = [];
+            for(var i=0;i<this.pharmacyList.length;i++){
+               var marker = new google.maps.Marker({
+                  position: { lat: this.pharmacyList[i].lat, lng: this.pharmacyList[i].long },
+                  title: this.pharmacyList[i].pharmacy_name
+               });
+               markerArray.push(marker);
+               markerArray[i].setMap(map);
+            }
+         })
+      });
    },
    created() {
-      return this.getPharmacyApi().then(() => {
-
-      });
+      // return this.getPharmacyApi().then(() => {
+      //    console.log(this.pharmacyList.length)
+      // });
    }
 }
 </script>

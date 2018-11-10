@@ -3,18 +3,7 @@ import VueAxios from 'vue-axios'
 import { GOOGLE_API_KEY } from '../../.././config'
 const state = {
    pharmacyList:[],
-   pharmacies:
-   {
-      address : null,
-      city: null,
-      location_name: null,
-      lat: 0,
-      long: 0,
-      phone: null,
-      state: null,
-      zip: null,
-   },
-   API_KEY: GOOGLE_API_KEY,
+   count: 0
 };
 
 const getters = {
@@ -25,26 +14,44 @@ const mutations = {
    setPharmacies(state, pharmacyObject){
       var count = 0;
       for(var i = 0; i <pharmacyObject.length; i++){
-         state.pharmacies.address = pharmacyObject[i].address;
-         state.pharmacies.city = pharmacyObject[i].city;
-         state.pharmacies.location_name = pharmacyObject[i].location_name;
-         state.pharmacies.phone = pharmacyObject[i].phone;
-         state.pharmacies.state = pharmacyObject[i].state;
-         state.pharmacies.zip = pharmacyObject[i].zip;
          if("location_1" in pharmacyObject[i]){
-            state.pharmacies.lat = pharmacyObject[i].location_1.coordinates[1];
-            state.pharmacies.long = pharmacyObject[i].location_1.coordinates[0];
-            count++;
+            var pharmacy = {
+               address : null,
+               city: null,
+               pharmacy_name: null,
+               lat: 0,
+               long: 0,
+               phone: null,
+               state: null,
+               zip: null,
+            };
+            pharmacy.address = pharmacyObject[i].address;
+            pharmacy.city = pharmacyObject[i].city;
+            pharmacy.pharmacy_name = pharmacyObject[i].pharmacy_name;
+            pharmacy.phone = pharmacyObject[i].phone;
+            pharmacy.state = pharmacyObject[i].state;
+            pharmacy.zip = pharmacyObject[i].zip;
+            pharmacy.lat = pharmacyObject[i].location_1.coordinates[1];
+            pharmacy.long = pharmacyObject[i].location_1.coordinates[0];
+            state.count++;
+            state.pharmacyList.push(pharmacy);
+            console.log(state.pharmacyList[i].lat);
+            console.log(state.pharmacyList[i].pharmacy_name);
          }else{
+            state.pharmacyList.push(state.pharmacy);
          }
-         state.pharmacyList.push(state.pharmacies);
       };
-      console.log(count)
-   }
+      console.log(state.pharmacyList[88].pharmacy_name);
+      console.log(state.count)
+   },
+   increment(state) {
+      state.count++
+      console.log("incremented")
+   },
 };
 
 const actions = {
-   getPharmacyApi ({commit}) {
+   getPharmacyApi ({ commit }) {
       console.log("getProfileApi started")
       return axios({
          method: "get",
@@ -55,9 +62,8 @@ const actions = {
          console.log("api responded");
          console.log(response);
          let pharmacyObject = response.data;
-         commit('setPharmacies', pharmacyObject)
+         commit('setPharmacies', pharmacyObject);
          console.log("setPharmacies finished ");
-         console.log(state.API_KEY);
       }).catch(function (error) {
          if(error.response) {
             console.log(error.response.data);
@@ -71,14 +77,12 @@ const actions = {
          }
       });
    },
-   hello({commit}){
-      console.log("hi")
-   }
+   increment: ({ commit }) => commit('increment'),
 };
 
 export default {
    state,
-   mutations,
    actions,
+   mutations,
    getters
 };
