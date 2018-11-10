@@ -33,16 +33,10 @@ const mutations = {
             pharmacy.zip = pharmacyObject[i].zip;
             pharmacy.lat = pharmacyObject[i].location_1.coordinates[1];
             pharmacy.long = pharmacyObject[i].location_1.coordinates[0];
-            state.count++;
             state.pharmacyList.push(pharmacy);
-            console.log(state.pharmacyList[i].lat);
-            console.log(state.pharmacyList[i].pharmacy_name);
          }else{
-            state.pharmacyList.push(state.pharmacy);
          }
       };
-      console.log(state.pharmacyList[88].pharmacy_name);
-      console.log(state.count)
    },
    increment(state) {
       state.count++
