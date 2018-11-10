@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import service from './modules/service';
-import utill from './modules/service';
+import utill from './modules/util';
 
 Vue.use(Vuex, VueAxios, axios);
 
