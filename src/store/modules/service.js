@@ -35,12 +35,9 @@ const mutations = {
             pharmacy.zip = pharmacyObject[i].zip;
             pharmacy.lat = pharmacyObject[i].location_1.coordinates[1];
             pharmacy.long = pharmacyObject[i].location_1.coordinates[0];
-            state.count++;
             state.pharmacyList.push(pharmacy);
          }
       };
-      console.log(state.pharmacyList[88].pharmacy_name);
-      console.log(state.count)
    },
    increment(state) {
       state.count++
@@ -57,7 +54,7 @@ const mutations = {
               };
               admission.adminYear = dmhasObject[i].admyear;
               admission.primaryDrug = dmhasObject[i].primarydrug;
-              admissions.admCount = dmhasObject[i].admcount;
+              admission.admCount = dmhasObject[i].admcount;
               state.dmhasAdmissionList.push(admission);
             }
          }

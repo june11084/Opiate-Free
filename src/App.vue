@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import './assets/w3.css';
 import HelloWorld from './components/HelloWorld.vue'
 import RouteTester from './components/RouteTester.vue'
 import GraphData from './components/GraphData.vue'
