@@ -14,30 +14,32 @@ const getters = {
 
 const mutations = {
    setPharmacies(state, pharmacyObject){
-      var count = 0;
-      for(var i = 0; i <pharmacyObject.length; i++){
-         if("location_1" in pharmacyObject[i]){
-            var pharmacy = {
-               address : null,
-               city: null,
-               pharmacy_name: null,
-               lat: 0,
-               long: 0,
-               phone: null,
-               state: null,
-               zip: null,
-            };
-            pharmacy.address = pharmacyObject[i].address;
-            pharmacy.city = pharmacyObject[i].city;
-            pharmacy.pharmacy_name = pharmacyObject[i].pharmacy_name;
-            pharmacy.phone = pharmacyObject[i].phone;
-            pharmacy.state = pharmacyObject[i].state;
-            pharmacy.zip = pharmacyObject[i].zip;
-            pharmacy.lat = pharmacyObject[i].location_1.coordinates[1];
-            pharmacy.long = pharmacyObject[i].location_1.coordinates[0];
-            state.pharmacyList.push(pharmacy);
-         }
-      };
+      if(state.pharmacyList.length === 0){
+         for(var i = 0; i <pharmacyObject.length; i++){
+            if("location_1" in pharmacyObject[i]){
+               var pharmacy = {
+                  address : null,
+                  city: null,
+                  pharmacy_name: null,
+                  lat: 0,
+                  long: 0,
+                  phone: null,
+                  state: null,
+                  zip: null,
+               };
+               pharmacy.address = pharmacyObject[i].address;
+               pharmacy.city = pharmacyObject[i].city;
+               pharmacy.pharmacy_name = pharmacyObject[i].pharmacy_name;
+               pharmacy.phone = pharmacyObject[i].phone;
+               pharmacy.state = pharmacyObject[i].state;
+               pharmacy.zip = pharmacyObject[i].zip;
+               pharmacy.lat = pharmacyObject[i].location_1.coordinates[1];
+               pharmacy.long = pharmacyObject[i].location_1.coordinates[0];
+               state.pharmacyList.push(pharmacy);
+               console.log(state.pharmacyList.length);
+            }
+         };
+      }
    },
    increment(state) {
       state.count++
