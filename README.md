@@ -7,7 +7,11 @@ This project is made for the College Tech Challenge FALL 2018. Connecticut ranks
 * [Vuex](https://vuex.vuejs.org/installation.html)
 
 ### Running
-1. Open git bash in the directory you want to download the project to and runn command < git clone
+1. Open git bash in the directory you want to download the project to and run command < git clone https://github.com/june11084/Opiate-Free.git >
+2. Open git bash in the project directory and run command < npm install >
+3. Run command < cd src >
+4. Run command vue serve
+5. Copy and paste generated URL into browser.
 
 ### Getting Started with Vuejs
 1. Setup Node.js
@@ -73,6 +77,10 @@ export default {
 </script>
 
 ```
+### Testing Tools
+* We used [Postman](https://www.getpostman.com/) to test api calls and read JSON objects in a readable format.
+* Google Chrome browser - CTRL+SHIFT+i > console or right click a page > inspect
+
 
 ### Known Problems
 ```
