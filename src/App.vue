@@ -1,12 +1,11 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <p>
-      <router-link to="/components/RouteTester.vue">Go to RouteTester</router-link>
-    </p>
-    <p>
-      <router-link to="/">Go to HelloWorld</router-link>
-    </p>
+    <ul>
+      <li><router-link to="/">HelloWorld</router-link></li>
+      <li><router-link to="/components/RouteTester.vue">RouteTester</router-link></li>
+      <li><router-link to="/components/GraphData.vue">GraphData</router-link></li>
+    </ul>
     <router-view></router-view>
   </div>
 </template>
@@ -14,12 +13,14 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import RouteTester from './components/RouteTester.vue'
+import GraphData from './components/GraphData.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
-    RouteTester
+    RouteTester,
+    GraphData
   }
 }
 </script>

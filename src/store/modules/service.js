@@ -3,6 +3,8 @@ import VueAxios from 'vue-axios'
 import { GOOGLE_API_KEY } from '../../.././config'
 const state = {
    pharmacyList:[],
+   //dmhas addmission for herion and other opiate addiction
+   dmhasAdmissionList:[],
    count: 0
 };
 
@@ -35,10 +37,6 @@ const mutations = {
             pharmacy.long = pharmacyObject[i].location_1.coordinates[0];
             state.count++;
             state.pharmacyList.push(pharmacy);
-            console.log(state.pharmacyList[i].lat);
-            console.log(state.pharmacyList[i].pharmacy_name);
-         }else{
-            state.pharmacyList.push(state.pharmacy);
          }
       };
       console.log(state.pharmacyList[88].pharmacy_name);
@@ -48,10 +46,29 @@ const mutations = {
       state.count++
       console.log("incremented")
    },
+   setDHMASdata(state, dmhasObject){
+      for(var i = 0; i <dmhasObject.length; i++){
+         if("primarydrug" in dmhasObject[i]){
+            if(dmhasObject[i].primarydrug === "Other Opiates and Synthetics" || dmhasObject[i].primarydrug === "Heroin" )
+            {
+              var admission = {
+                adminYear : null,
+                primaryDrug: null,
+              };
+              admission.adminYear = dmhasObject[i].admyear;
+              admission.primaryDrug = dmhasObject[i].primarydrug;
+              admissions.admCount = dmhasObject[i].admcount;
+              state.dmhasAdmissionList.push(admission);
+            }
+         }
+      };
+      console.log(state.dmhasAdmissionList.length);
+   },
 };
 
+
 const actions = {
-   getPharmacyApi ({ commit }) {
+  getPharmacyApi ({ commit }) {
       console.log("getProfileApi started")
       return axios({
          method: "get",
@@ -77,7 +94,32 @@ const actions = {
          }
       });
    },
-   increment: ({ commit }) => commit('increment'),
+  increment: ({ commit }) => commit('increment'),
+  getDMHAS_Api ({ commit }) {
+      console.log("getDMHA_Api stated")
+      return axios({
+        method: "get",
+        url: 'https://data.ct.gov/resource/e5st-rjge.json ',
+        headers: {},
+        data: {}
+      }).then((response) => {
+        console.log("api responded");
+        console.log(response);
+        let dmhasObject = response.data;
+        commit('setDHMASdata', dmhasObject);
+      }).catch(function (error) {
+        if(error.response) {
+           console.log(error.response.data);
+           console.log(error.response.status);
+           console.log(error.response.headers);
+        }else if(error.request) {
+           console.log(error.request);
+        }else{
+           console.log('Error', error.message);
+           console.log(error.config);
+        }
+      });
+   },
 };
 
 export default {

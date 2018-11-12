@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import store from '.././store'
+import store from '.././store';
 import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex'
