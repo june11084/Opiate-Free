@@ -28,6 +28,7 @@ import store from '.././store'
 import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex'
+import { GOOGLE_API_KEY } from '../.././config'
 
 export default {
    name: 'HelloWorld',
@@ -69,6 +70,7 @@ export default {
                lat: position.coords.latitude,
                lng: position.coords.longitude
             };
+            this.map.setZoom(12)
          });
       },
       initMap(){
@@ -80,9 +82,11 @@ export default {
                for(var i=0;i<this.pharmacyList.length;i++){
                   var contentString =`
                   <div class="person">
-                  <h2>
-                  ${this.pharmacyList[i].pharmacy_name}
-                  </h2>
+                  <h2>${this.pharmacyList[i].pharmacy_name}</h2>
+                  <h3>${this.pharmacyList[i].address}</h3>
+                  <p><b>City:</b> ${this.pharmacyList[i].city}<br/><b>Zip:</b> ${this.pharmacyList[i].zip}<b>  Phone:</b> ${this.pharmacyList[i].phone}</p>
+                  <p><img src="https://maps.googleapis.com/maps/api/streetview?size=350x120&location=${this.pharmacyList[i].lat},${this.pharmacyList[i].long}&key=${GOOGLE_API_KEY}"></p>
+                  <a href="http://www.google.com/maps/place/${this.pharmacyList[i].lat},${this.pharmacyList[i].long}" target="_blank" class="w3-button w3-block w3-round-xlarge w3-blue"><i><b>Directions</b></i></a>
                   </div>
                   `;
                   var marker = new google.maps.Marker({

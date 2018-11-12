@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import './assets/w3.css';
 import HelloWorld from './components/HelloWorld.vue'
 // import GoogleMaps from './components/googleMaps.vue'
 
