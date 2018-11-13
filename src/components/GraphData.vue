@@ -22,18 +22,66 @@ export default {
       return{
         listOfAdmission:1,
       }
+      adminYear2014: {
+        heroinAdmin: null,
+        otherOpiateAdmin: null
+      },
+      adminYear2015: {
+        heroinAdmin: null,
+        otherOpiateAdmin: null
+      },
+      adminYear2016: {
+        heroinAdmin: null,
+        otherOpiateAdmin: null
+      },
+      adminYear2017: {
+        heroinAdmin: null,
+        otherOpiateAdmin: null
+      }
    },
   computed: {
       ...mapState({
          dmhasAdmissionList: state => state.service.dmhasAdmissionList,
       }),
+
       ...mapGetters({
       }),
    },
    methods: {
       ...mapActions({
-         getDMHAS_Api: 'getDMHAS_Api'
-      })
+        getDMHAS_Api: 'getDMHAS_Api'
+      }),
+      groupAdmission(){
+
+        for(let i = 0; i < dmhasAdmissionList; i++)
+        {
+          if(dmhasAdmissionList[i].adminYear === "2014")
+          {
+            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
+              adminYear2014.heroinAmin += dmhasAdmissionList[i].admCount;
+            else
+              adminYear2014.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
+          }
+          else if (dmhasAdmissionList[i].adminYear === "2015") {
+            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
+              adminYear2015.heroinAmin += dmhasAdmissionList[i].admCount;
+            else
+              adminYear2015.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
+          }
+          else if (dmhasAdmissionList[i].adminYear === "2016") {
+            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
+              adminYear2016.heroinAmin += dmhasAdmissionList[i].admCount;
+            else
+              adminYear2016.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
+          }
+          else if (dmhasAdmissionList[i].adminYear === "2017") {
+            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
+              adminYear2017.heroinAmin += dmhasAdmissionList[i].admCount;
+            else
+              adminYear2017.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
+          }
+        }
+      }
    },
    mounted(){
 

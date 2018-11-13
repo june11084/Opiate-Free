@@ -5,8 +5,23 @@ const state = {
    pharmacyList:[],
    //dmhas addmission for herion and other opiate addiction
    dmhasAdmissionList:[],
-   count: 0
+   count: 0,
+   trace1: {
+      x: ['2014', '2015', '2016', '2017'],
+      y: [0,0,0,0]
+      name: 'Heroin',
+      type: 'bar'
+    },
+  trace2:  {
+      x: ['2014', '2015', '2016', '2017'],
+      y: [0, 0, 0, 0],
+      name: 'Other Opiate and ',
+      type: 'bar'
 };
+
+
+};
+
 
 const getters = {
 
@@ -51,8 +66,9 @@ const mutations = {
               var admission = {
                 adminYear : null,
                 primaryDrug: null,
+                admCount: null
               };
-              admission.adminYear = dmhasObject[i].admyear;
+              admission.adminYear = dmhasObject[i].fiscalyear;
               admission.primaryDrug = dmhasObject[i].primarydrug;
               admission.admCount = dmhasObject[i].admcount;
               state.dmhasAdmissionList.push(admission);
@@ -62,7 +78,6 @@ const mutations = {
       console.log(state.dmhasAdmissionList.length);
    },
 };
-
 
 const actions = {
   getPharmacyApi ({ commit }) {
@@ -91,6 +106,7 @@ const actions = {
          }
       });
    },
+
   increment: ({ commit }) => commit('increment'),
   getDMHAS_Api ({ commit }) {
       console.log("getDMHA_Api stated")
