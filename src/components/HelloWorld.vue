@@ -63,7 +63,7 @@ export default {
       },
       setLocation() {
          this.map.panTo({lat:this.currentLocation.geometry.location.lat(), lng: this.currentLocation.geometry.location.lng()})
-         this.map.setZoom(12)
+         this.map.setZoom(13)
       },
       geoLocate: function() {
          navigator.geolocation.getCurrentPosition(position => {

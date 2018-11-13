@@ -5,7 +5,19 @@ const state = {
    pharmacyList:[],
    //dmhas addmission for herion and other opiate addiction
    dmhasAdmissionList:[],
-   count: 0
+   count: 0,
+   trace1: {
+      x: ["2014-05", "2015-05", "2016-05", "2017-05"],
+      y: [20, 14, 23, 60],
+      name: 'Heroin',
+      type: 'bar'
+   },
+   trace2: {
+      x: ["2014-05", "2015-05", "2016-05", "2017-05"],
+      y: [12, 18, 29, 48],
+      name: 'Other Opiates and Synthetics',
+      type: 'bar'
+   },
 };
 
 const getters = {
@@ -36,31 +48,30 @@ const mutations = {
                pharmacy.lat = pharmacyObject[i].location_1.coordinates[1];
                pharmacy.long = pharmacyObject[i].location_1.coordinates[0];
                state.pharmacyList.push(pharmacy);
-               console.log(state.pharmacyList.length);
+               // console.log(state.pharmacyList.length);
             }
          };
       }
    },
-   increment(state) {
-      state.count++
-      console.log("incremented")
-   },
    setDHMASdata(state, dmhasObject){
-      for(var i = 0; i <dmhasObject.length; i++){
-         if("primarydrug" in dmhasObject[i]){
-            if(dmhasObject[i].primarydrug === "Other Opiates and Synthetics" || dmhasObject[i].primarydrug === "Heroin" )
-            {
-              var admission = {
-                adminYear : null,
-                primaryDrug: null,
-              };
-              admission.adminYear = dmhasObject[i].admyear;
-              admission.primaryDrug = dmhasObject[i].primarydrug;
-              admission.admCount = dmhasObject[i].admcount;
-              state.dmhasAdmissionList.push(admission);
+      if(state.dmhasAdmissionList.length === 0){
+         for(var i = 0; i <dmhasObject.length; i++){
+            if(("primarydrug" in dmhasObject[i]) && ("admcount" in dmhasObject[i])){
+               if(dmhasObject[i].primarydrug === "Other Opiates and Synthetics" || dmhasObject[i].primarydrug === "Heroin" )
+               {
+                 var admission = {
+                   adminYear : null,
+                   primaryDrug: null,
+                 };
+                 admission.adminYear = dmhasObject[i].admyear;
+                 admission.primaryDrug = dmhasObject[i].primarydrug;
+                 admission.admCount = dmhasObject[i].admcount;
+                 state.dmhasAdmissionList.push(admission);
+                 console.log(dmhasObject[i].admcount);
+               }
             }
-         }
-      };
+         };
+      }
       console.log(state.dmhasAdmissionList.length);
    },
 };
@@ -93,7 +104,6 @@ const actions = {
          }
       });
    },
-  increment: ({ commit }) => commit('increment'),
   getDMHAS_Api ({ commit }) {
       console.log("getDMHA_Api stated")
       return axios({

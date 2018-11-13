@@ -54,6 +54,7 @@ This project is structed with vuex, a plugin that is a state management pattern 
 1. Vuex - For state management
 2. Axios - For making api calls
 3. Google Maps Api - For creating a custom map with markers
+4. vue-plotly - For using plotly in vue.
 ```
 ### Styling
 * Styling can be done locally in each component .vue files.
