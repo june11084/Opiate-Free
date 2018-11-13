@@ -21,7 +21,7 @@ export default {
   components: {
     HelloWorld,
     RouteTester,
-    GraphData,
+    GraphData
   }
 }
 </script>
