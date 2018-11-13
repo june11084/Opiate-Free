@@ -8,10 +8,19 @@ This project is made for the College Tech Challenge FALL 2018. Connecticut ranks
 
 ### Running
 1. Open git bash in the directory you want to download the project to and run command < git clone https://github.com/june11084/Opiate-Free.git >
-2. Open git bash in the project directory and run command < npm install >
-3. Run command < cd src >
-4. Run command vue serve
-5. Copy and paste generated URL into browser.
+2. Create a config.js file in the outmost directory of the project folder, and include the code below and replace the api key string with your own. Get the key [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+```
+const GOOGLE_API_KEY = "Your own google maps api key";
+
+export {
+   GOOGLE_API_KEY
+};
+```
+3. Open git bash in the project directory and run command < npm install >
+4. Run command < cd src >
+5. Run command vue serve
+6. Copy and paste generated URL into browser.
 
 ### Getting Started with Vuejs
 1. Setup Node.js
