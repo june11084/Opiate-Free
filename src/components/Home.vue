@@ -3,30 +3,22 @@
    <div class="hello">
       <div class="w3-top">
          <div class="w3-bar w3-black w3-card">
-            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-            <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BAND</a>
-            <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TOUR</a>
+            <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ABOUT</a>
+            <a href="#data" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DATA</a>
             <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
             <div class="w3-dropdown-hover w3-hide-small">
-            <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-               <a href="#" class="w3-bar-item w3-button">Merchandise</a>
-               <a href="#" class="w3-bar-item w3-button">Extras</a>
-               <a href="#" class="w3-bar-item w3-button">Media</a>
+               <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
+               <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                  <a href="#" class="w3-bar-item w3-button">Graph</a>
+                  <a href="#" class="w3-bar-item w3-button">Extras</a>
+                  <a href="#" class="w3-bar-item w3-button">Media</a>
+               </div>
             </div>
-            </div>
-            <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
          </div>
       </div>
-      <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-         <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
-         <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
-         <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
-         <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
-      </div>
       <!-- Page content -->
-      <div class="w3-content" style="max-width:2000px;margin-top:46px">
+      <div class="w3-content" style="max-width:2000px;margin-top:56px">
 
          <!-- Automatic Slideshow Images -->
          <div class="mySlides w3-display-container w3-center">
@@ -53,29 +45,25 @@
 
          <!-- The Band Section -->
          <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-            <h2 class="w3-wide">THE BAND</h2>
-            <p class="w3-opacity"><i>We love music</i></p>
+            <h2 class="w3-wide">The Opiate Crisis</h2>
             <p class="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
             ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
             adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <h6 class="w3-wide">The Team</h6>
             <div class="w3-row w3-padding-32">
-               <div class="w3-third">
+               <div class="w3-half">
                   <p>Name</p>
                   <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
                </div>
-               <div class="w3-third">
+               <div class="w3-half">
                   <p>Name</p>
                   <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-               </div>
-               <div class="w3-third">
-                  <p>Name</p>
-                  <img src="/w3images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%">
                </div>
             </div>
          </div>
 
-         <!-- The Tour Section -->
-         <div class="w3-black" id="tour">
+         <!-- The Data Section -->
+         <div class="w3-black" id="data">
             <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
                <h2 class="w3-wide w3-center">TOUR DATES</h2>
                <p class="w3-opacity w3-center"><i>Remember to book your tickets!</i></p><br>
@@ -160,7 +148,6 @@
          <!-- The Contact Section -->
          <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
             <h2 class="w3-wide w3-center">CONTACT</h2>
-            <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
             <div class="w3-row w3-padding-32">
                <div class="w3-col m6 w3-large w3-margin-bottom">
                   <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
@@ -237,7 +224,7 @@ export default {
                lat: position.coords.latitude,
                lng: position.coords.longitude
             };
-            this.map.setZoom(12)
+            this.map.setZoom(14)
          });
       },
       initMap(){
@@ -299,9 +286,6 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 
 </style>
