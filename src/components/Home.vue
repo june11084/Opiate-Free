@@ -61,13 +61,10 @@
          <div class="w3-black" id="data">
             <carousel :per-page="1">
              <slide>
-
+                <vue-plotly :data="data" :layout="layout" :options="options"/>
              </slide>
              <slide>
-
-             </slide>
-             <slide>
-
+                <vue-plotly :data="data2" :layout="layout2" :options="options2"/>
              </slide>
             </carousel>
          </div>
@@ -92,7 +89,7 @@
          <!-- The About Section -->
          <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
             <h2 class="w3-wide">The Opiate Crisis</h2>
-            <p class="w3-justify">Addiction to Opiate subtances is serious problem in Connecticut. While there has been a decrease in pharmaceutical and other synthetics deaths over the years, deaths in heroin continue to rise. This application is intended to help to those stuggling with addiction. By providing a way to locate the the nearest Pharmacy equipped to distribute Naloxone, a medication designed to rapidly reverse opoid overdose, we hope to prevent families and individuals from dealing with potential death from overdose. However, this is only an immediate solution to a continuous and relentless problem. We encourage those facing addiction to seek long term rehabilative help.</p>
+            <p style="font-size: 21px">Addiction to Opiate subtances is serious problem in Connecticut. While there has been a decrease in pharmaceutical and other synthetics deaths over the years, deaths in heroin continue to rise. This application is intended to help to those stuggling with addiction. By providing a way to locate the the nearest Pharmacy equipped to distribute Naloxone, a medication designed to rapidly reverse opoid overdose, we hope to prevent families and individuals from dealing with potential death from overdose. However, this is only an immediate solution to a continuous and relentless problem. We encourage those facing addiction to seek long term rehabilative help.</p>
             <h6 class="w3-wide">The Team</h6>
             <div class="w3-row ">
                <div class="w3-half">
@@ -140,11 +137,15 @@ import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex'
 import { GOOGLE_API_KEY } from '../.././config'
+import VuePlotly from '@statnett/vue-plotly'
 
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components: {
+     VuePlotly
   },
   data() {
       return{
@@ -152,11 +153,26 @@ export default {
          currentLocation:null,
          map: null,
          center:{ lat: 0, lng: 0 },
+         data: [],
+         layout: {
+           title: 'Accidental Drug Related Deaths 2012-2017'
+         },
+         options: {},
+         data2: [],
+         layout2: {
+           title: 'Admissions to DMHAS Addiction Treatment For Opiate By Year'
+         },
+         options2: {}
       }
    },
    computed: {
       ...mapState({
          pharmacyList: state => state.service.pharmacyList,
+         deathsList: state => state.service.deathsList,
+         traceFemaleDeaths: state => state.service.traceFemaleDeaths,
+         traceMaleDeaths: state => state.service.traceMaleDeaths,
+         dmhasHeroinAdm: state => state.service.dmhasHeroinAdm,
+         dmhasOtherOpiateAdm: state => state.service.dmhasOtherOpiateAdm,
       }),
       ...mapGetters({
       }),
@@ -164,8 +180,23 @@ export default {
    methods: {
       ...mapActions({
          getPharmacyApi: 'getPharmacyApi',
-         increment: 'increment'
+         increment: 'increment',
+         getDeaths_Api: 'getDeaths_Api',
+         getDMHAS_Api: 'getDMHAS_Api'
       }),
+      getChart1(){
+        return this.getDeaths_Api().then(() => {
+            this.data.push(this.traceMaleDeaths);
+            this.data.push(this.traceFemaleDeaths);
+
+        })
+      },
+      getChart2(){
+        return this.getDMHAS_Api().then(() => {
+            this.data2.push(this.dmhasHeroinAdm);
+            this.data2.push(this.dmhasOtherOpiateAdm);
+        })
+      },
       newLocation(place) {
          this.currentLocation = place;
          console.log(this.currentLocation.name)
@@ -224,6 +255,8 @@ export default {
       this.initMap();
    },
    created() {
+      this.getChart1();
+      this.getChart2();
    }
 }
 </script>

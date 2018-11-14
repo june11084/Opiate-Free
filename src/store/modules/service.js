@@ -11,7 +11,7 @@ const state = {
       y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       name: 'Male',
       type: 'bar',
-      color: 'rgb(204,204,204)'
+      color: '#cccccc'
    },
    traceFemaleDeaths: {
       x: ["Heroin", "Fentanyl", "Cocaine", "Oxycodone", "Oxymorphone", "EtOH", "Hydrocodone", "Benzodiazepine", "Methadone", "Amphet", "Tramad", "Morphine(not heroin)", "Other"],
