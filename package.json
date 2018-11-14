@@ -13,6 +13,7 @@
     "plotly.js": "^1.42.5",
     "vue": "^2.5.17",
     "vue-axios": "^2.1.4",
+    "vue-carousel": "^0.16.0-rc2",
     "vue-router": "^3.0.1",
     "vue2-google-maps": "^0.10.2",
     "vuex": "^3.0.1"

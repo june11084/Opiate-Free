@@ -19,46 +19,26 @@
       </div>
       <!-- Page content -->
       <div class="w3-content" style="max-width:2000px;margin-top:56px">
-
          <!-- Automatic Slideshow Images -->
-         <div class="mySlides w3-display-container w3-center">
-            <img src="/w3images/la.jpg" style="width:100%">
+         <div class="mySlides w3-display-container w3-center" ref="slides">
+            <img src="../assets/images/free.jpg" style="width:100%" alt="Freedom pose">
             <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
                <h3>Los Angeles</h3>
                <p><b>We had the best time playing at Venice Beach!</b></p>
             </div>
          </div>
-         <div class="mySlides w3-display-container w3-center">
-            <img src="/w3images/ny.jpg" style="width:100%">
+         <div class="mySlides w3-display-container w3-center" ref="slides">
+            <img src="../assets/images/free.jpg" style="width:100%" alt="Freedom pose">>
             <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
                <h3>New York</h3>
                <p><b>The atmosphere in New York is lorem ipsum.</b></p>
             </div>
          </div>
-         <div class="mySlides w3-display-container w3-center">
-            <img src="/w3images/chicago.jpg" style="width:100%">
+         <div class="mySlides w3-display-container w3-center" ref="slides">
+            <img src="../assets/images/free.jpg" style="width:100%" alt="Freedom pose">
             <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
                <h3>Chicago</h3>
                <p><b>Thank you, Chicago - A night we won't forget.</b></p>
-            </div>
-         </div>
-
-         <!-- The Band Section -->
-         <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-            <h2 class="w3-wide">The Opiate Crisis</h2>
-            <p class="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <h6 class="w3-wide">The Team</h6>
-            <div class="w3-row w3-padding-32">
-               <div class="w3-half">
-                  <p>Name</p>
-                  <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-               </div>
-               <div class="w3-half">
-                  <p>Name</p>
-                  <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-               </div>
             </div>
          </div>
 
@@ -127,7 +107,6 @@
          </div>
 
          <div>
-            <p v-on:click="listOfPharmacies=pharmacyList">Pharmacies: {{listOfPharmacies}}</p>
             <br>
             <h2>Search Location</h2>
             <label>
@@ -144,6 +123,24 @@
                style="width:100%;  height: 900px;"
                >
             </GmapMap>
+         </div>
+         <!-- The About Section -->
+         <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+            <h2 class="w3-wide">The Opiate Crisis</h2>
+            <p class="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <h6 class="w3-wide">The Team</h6>
+            <div class="w3-row ">
+               <div class="w3-half">
+                  <p>Jun Li</p>
+                  <!-- <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+               </div>
+               <div class="w3-half">
+                  <p>Vu Truong</p>
+                  <!-- <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+               </div>
+            </div>
          </div>
          <!-- The Contact Section -->
          <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
@@ -170,7 +167,6 @@
                </div>
             </div>
          </div>
-
       <!-- End Page Content -->
       </div>
 
@@ -191,7 +187,7 @@ export default {
   },
   data() {
       return{
-         listOfPharmacies:1,
+         myIndex: 0,
          currentLocation:null,
          map: null,
          center:{ lat: 0, lng: 0 },
@@ -209,6 +205,17 @@ export default {
          getPharmacyApi: 'getPharmacyApi',
          increment: 'increment'
       }),
+      carousel() {
+        var i;
+        var x = this.$refs.slides;
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        this.myIndex++;
+        if (this.myIndex > x.length) {myIndex = 1}
+        x[this.myIndex-1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+      },
       newLocation(place) {
          this.currentLocation = place;
          console.log(this.currentLocation.name)
@@ -265,11 +272,9 @@ export default {
    },
    mounted(){
       this.initMap();
+      this.carousel();
    },
    created() {
-      // return this.getPharmacyApi().then(() => {
-      //    console.log(this.pharmacyList.length)
-      // });
    }
 }
 </script>
@@ -287,5 +292,6 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
+
 
 </style>
