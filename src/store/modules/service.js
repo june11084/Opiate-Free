@@ -10,25 +10,29 @@ const state = {
       x: ["Heroin", "Fentanyl", "Cocaine", "Oxycodone", "Oxymorphone", "EtOH", "Hydrocodone", "Benzodiazepine", "Methadone", "Amphet", "Tramad", "Morphine(not heroin)", "Other"],
       y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       name: 'Male',
-      type: 'bar'
+      type: 'bar',
+      color: 'rgb(204,204,204)'
    },
    traceFemaleDeaths: {
       x: ["Heroin", "Fentanyl", "Cocaine", "Oxycodone", "Oxymorphone", "EtOH", "Hydrocodone", "Benzodiazepine", "Methadone", "Amphet", "Tramad", "Morphine(not heroin)", "Other"],
       y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       name: 'Female',
-      type: 'bar'
+      type: 'bar',
+      color: 'rgb(49,130,189)'
    },
    dmhasHeroinAdm: {
       x:["2013","2014","2015","2016"],
       y:[0,0,0,0],
       name: 'Heroin',
       type: 'bar',
+      color: 'rgb(204,204,204)'
    },
    dmhasOtherOpiateAdm: {
       x:["2013","2014","2015","2016"],
       y:[0,0,0,0],
       name: 'Other Opiates and Synthetics',
       type: 'bar',
+      color: 'rgb(49,130,189)'
    }
 }
 

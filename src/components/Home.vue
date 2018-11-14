@@ -92,9 +92,7 @@
          <!-- The About Section -->
          <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
             <h2 class="w3-wide">The Opiate Crisis</h2>
-            <p class="w3-justify" style="font-size: 21px">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="w3-justify">Addiction to Opiate subtances is serious problem in Connecticut. While there has been a decrease in pharmaceutical and other synthetics deaths over the years, deaths in heroin continue to rise. This application is intended to help to those stuggling with addiction. By providing a way to locate the the nearest Pharmacy equipped to distribute Naloxone, a medication designed to rapidly reverse opoid overdose, we hope to prevent families and individuals from dealing with potential death from overdose. However, this is only an immediate solution to a continuous and relentless problem. We encourage those facing addiction to seek long term rehabilative help.</p>
             <h6 class="w3-wide">The Team</h6>
             <div class="w3-row ">
                <div class="w3-half">
