@@ -19,53 +19,47 @@
       </div>
       <!-- Page content -->
       <div class="w3-content" style="max-width:2000px;margin-top:56px">
-
          <!-- Automatic Slideshow Images -->
-         <div class="mySlides w3-display-container w3-center">
-            <img src="/w3images/la.jpg" style="width:100%">
-            <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-               <h3>Los Angeles</h3>
-               <p><b>We had the best time playing at Venice Beach!</b></p>
+         <carousel :per-page="1" autoplay :autoplayHoverPause="false" :loop="true" :autoplayTimeout="5500">
+          <slide>
+            <div class="mySlides w3-display-container w3-center">
+              <img src="../assets/images/freeFamily.jpeg" style="width:100%" alt="Freedom pose" >
+              <div class="w3-display-bottommiddle w3-container w3-text-white w3-hide-small">
+                <div class="quote">
+                  <p><i>Be strong enough to let go and wise enough to wait for what you deserve.</i></p>
+                  <p><i> - Cumberlandheights.org </i></p>
+                </div>
+              </div>
             </div>
-         </div>
-         <div class="mySlides w3-display-container w3-center">
-            <img src="/w3images/ny.jpg" style="width:100%">
-            <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-               <h3>New York</h3>
-               <p><b>The atmosphere in New York is lorem ipsum.</b></p>
+          </slide>
+          <slide>
+            <div class="mySlides w3-display-container w3-center">
+              <img src="../assets/images/freefemale.jpeg" style="width:100%" alt="Freedom pose">
+              <div class="w3-display-bottommiddle w3-container w3-text-white w3-hide-small">
+                <div class="quote">
+                  <p><i>Be strong enough to let go and wise enough to wait for what you deserve.</i></p>
+                  <p><i> - Cumberlandheights.org </i></p>
+                </div>
+              </div>
             </div>
-         </div>
-         <div class="mySlides w3-display-container w3-center">
-            <img src="/w3images/chicago.jpg" style="width:100%">
-            <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-               <h3>Chicago</h3>
-               <p><b>Thank you, Chicago - A night we won't forget.</b></p>
+          </slide>
+          <slide>
+            <div class="mySlides w3-display-container w3-center">
+              <img src="../assets/images/manOnBike.jpeg" style="width:100%" alt="Freedom pose">
+              <div class="w3-display-bottommiddle w3-container w3-text-white w3-hide-small">
+                <div class="quote">
+                  <p><i>Be strong enough to let go and wise enough to wait for what you deserve.</i></p>
+                  <p><i> - Cumberlandheights.org </i></p>
+                </div>
+              </div>
             </div>
-         </div>
-
-         <!-- The Band Section -->
-         <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-            <h2 class="w3-wide">The Opiate Crisis</h2>
-            <p class="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <h6 class="w3-wide">The Team</h6>
-            <div class="w3-row w3-padding-32">
-               <div class="w3-half">
-                  <p>Name</p>
-                  <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-               </div>
-               <div class="w3-half">
-                  <p>Name</p>
-                  <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-               </div>
-            </div>
-         </div>
+          </slide>
+         </carousel>
 
          <!-- The Data Section -->
          <div class="w3-black" id="data">
             <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-               <h2 class="w3-wide w3-center">TOUR DATES</h2>
+               <h2 class="w3-wide w3-center">Data</h2>
                <p class="w3-opacity w3-center"><i>Remember to book your tickets!</i></p><br>
 
                <ul class="w3-ul w3-border w3-white w3-text-grey">
@@ -127,7 +121,6 @@
          </div>
 
          <div>
-            <p v-on:click="listOfPharmacies=pharmacyList">Pharmacies: {{listOfPharmacies}}</p>
             <br>
             <h2>Search Location</h2>
             <label>
@@ -145,12 +138,26 @@
                >
             </GmapMap>
          </div>
+         <!-- The About Section -->
+         <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+            <h2 class="w3-wide">The Opiate Crisis</h2>
+            <p class="w3-justify">Addiction to Opiate subtances is serious problem in Connecticut. While there has been a decrease in pharmaceutical and other synthetics deaths over the years, deaths in heroin continue to rise. This application is intended to help to those stuggling with addiction. By providing a way to locate the the nearest Pharmacy equipped to distribute Naloxone, a medication designed to rapidly reverse opoid overdose, we hope to prevent families and individuals from dealing with potential death from overdose. However, this is only an immediate solution to a continuous and relentless problem. We encourage those facing addiction to seek long term rehabilative help.</p>
+            <h6 class="w3-wide">The Team</h6>
+            <div class="w3-row ">
+               <div class="w3-half">
+                  <p>Jun Li</p>
+               </div>
+               <div class="w3-half">
+                  <p>Vu Truong</p>
+               </div>
+            </div>
+         </div>
          <!-- The Contact Section -->
          <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
             <h2 class="w3-wide w3-center">CONTACT</h2>
             <div class="w3-row w3-padding-32">
                <div class="w3-col m6 w3-large w3-margin-bottom">
-                  <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
+                  <i class="fa fa-map-marker" style="width:30px"></i> Connecticut, US<br>
                   <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
                   <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
                </div>
@@ -170,7 +177,6 @@
                </div>
             </div>
          </div>
-
       <!-- End Page Content -->
       </div>
 
@@ -191,7 +197,7 @@ export default {
   },
   data() {
       return{
-         listOfPharmacies:1,
+         myIndex: 0,
          currentLocation:null,
          map: null,
          center:{ lat: 0, lng: 0 },
@@ -267,9 +273,6 @@ export default {
       this.initMap();
    },
    created() {
-      // return this.getPharmacyApi().then(() => {
-      //    console.log(this.pharmacyList.length)
-      // });
    }
 }
 </script>
@@ -286,6 +289,12 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+}
+.quote {
+  font-size:16px;
+  position: relative;
+  max-width: inherit;
+  max-height: inherit;
 }
 
 </style>

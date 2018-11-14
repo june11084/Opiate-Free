@@ -4,9 +4,10 @@ import store from './store'
 import Home from './components/Home.vue'
 import RouteTester from './components/RouteTester.vue'
 import GraphData from './components/GraphData.vue'
-
+import VueCarousel from 'vue-carousel';
 import VueRouter from 'vue-router'
 
+Vue.use(VueCarousel);
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 

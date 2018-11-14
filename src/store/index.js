@@ -4,8 +4,6 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import service from './modules/service';
 import utill from './modules/utill';
-//import Plotly from 'plotly.js/dist/plotly.min'
-// import googleMaps from './modules/googleMaps';
 import {GOOGLE_API_KEY} from '../.././config.js'
 import * as VueGoogleMaps from 'vue2-google-maps'
 

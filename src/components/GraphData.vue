@@ -28,10 +28,14 @@ export default {
       return{
          listOfAdmission:1,
          data: [],
-         layout: {},
+         layout: {
+           title: 'Accidental Drug Related Deaths 2012-2017'
+         },
          options: {},
          data2: [],
-         layout2: {},
+         layout2: {
+           title: 'Admissions to DMHAS Addiction Treatment For Opiate By Year'
+         },
          options2: {}
       }
    },
@@ -58,6 +62,7 @@ export default {
         return this.getDeaths_Api().then(() => {
             this.data.push(this.traceMaleDeaths);
             this.data.push(this.traceFemaleDeaths);
+
         })
       },
       getChart2(){
