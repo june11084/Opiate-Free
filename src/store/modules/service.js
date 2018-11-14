@@ -79,7 +79,7 @@ const mutations = {
 
 const actions = {
   getPharmacyApi ({ commit }) {
-      console.log("getProfileApi started")
+      console.log("getPharmacyApi started")
       return axios({
          method: "get",
          url: `https://data.ct.gov/resource/4vs4-3cb3.json`,
