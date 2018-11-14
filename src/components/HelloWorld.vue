@@ -5,7 +5,7 @@
       <div>
          <p v-on:click="listOfPharmacies=pharmacyList">Pharmacies: {{listOfPharmacies}}</p>
          <br>
-         <h2>Enter Your Location</h2>
+         <h2>Search Location</h2>
          <label>
             <gmap-autocomplete
                @place_changed="newLocation">
@@ -59,11 +59,11 @@ export default {
       newLocation(place) {
          this.currentLocation = place;
          console.log(this.currentLocation.name)
-         // this.map.panTo()
+         this.setLocation();
       },
       setLocation() {
          this.map.panTo({lat:this.currentLocation.geometry.location.lat(), lng: this.currentLocation.geometry.location.lng()})
-         this.map.setZoom(12)
+         this.map.setZoom(13)
       },
       geoLocate: function() {
          navigator.geolocation.getCurrentPosition(position => {

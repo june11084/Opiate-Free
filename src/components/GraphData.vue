@@ -4,6 +4,8 @@
       <div>
          <p v-on:click="listOfAdmission=dmhasAdmissionList">Admissions: {{listOfAdmission}}</p>
       </div>
+      <vue-plotly :data="data" :layout="layout" :options="options"/>
+      <vue-plotly :data="data2" :layout="layout2" :options="options2"/>
    </div>
 </template>
 
@@ -12,36 +14,36 @@ import store from '.././store'
 import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex'
+import VuePlotly from '@statnett/vue-plotly'
 
 export default {
-  name: 'GraphData',
-  props: {
-    msg: String
-  },
-  data() {
+   name: 'GraphData',
+   props: {
+      msg: String
+   },
+   components: {
+      VuePlotly
+   },
+   data() {
       return{
-        listOfAdmission:1,
-      }
-      adminYear2014: {
-        heroinAdmin: null,
-        otherOpiateAdmin: null
-      },
-      adminYear2015: {
-        heroinAdmin: null,
-        otherOpiateAdmin: null
-      },
-      adminYear2016: {
-        heroinAdmin: null,
-        otherOpiateAdmin: null
-      },
-      adminYear2017: {
-        heroinAdmin: null,
-        otherOpiateAdmin: null
+         listOfAdmission:1,
+         data: [],
+         layout: {},
+         options: {},
+         data2: [],
+         layout2: {},
+         options2: {}
       }
    },
-  computed: {
+   computed: {
       ...mapState({
-         dmhasAdmissionList: state => state.service.dmhasAdmissionList,
+         deathsList: state => state.service.deathsList,
+         traceFemaleDeaths: state => state.service.traceFemaleDeaths,
+         traceMaleDeaths: state => state.service.traceMaleDeaths,
+         dmhasHeroinAdm: state => state.service.dmhasHeroinAdm,
+         dmhasOtherOpiateAdm: state => state.service.dmhasOtherOpiateAdm,
+
+
       }),
 
       ...mapGetters({
@@ -49,47 +51,30 @@ export default {
    },
    methods: {
       ...mapActions({
+        getDeaths_Api: 'getDeaths_Api',
         getDMHAS_Api: 'getDMHAS_Api'
       }),
-      groupAdmission(){
-
-        for(let i = 0; i < dmhasAdmissionList; i++)
-        {
-          if(dmhasAdmissionList[i].adminYear === "2014")
-          {
-            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
-              adminYear2014.heroinAmin += dmhasAdmissionList[i].admCount;
-            else
-              adminYear2014.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
-          }
-          else if (dmhasAdmissionList[i].adminYear === "2015") {
-            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
-              adminYear2015.heroinAmin += dmhasAdmissionList[i].admCount;
-            else
-              adminYear2015.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
-          }
-          else if (dmhasAdmissionList[i].adminYear === "2016") {
-            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
-              adminYear2016.heroinAmin += dmhasAdmissionList[i].admCount;
-            else
-              adminYear2016.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
-          }
-          else if (dmhasAdmissionList[i].adminYear === "2017") {
-            if(dmhasAdmissionList[i].primaryDrug === "Heroin")
-              adminYear2017.heroinAmin += dmhasAdmissionList[i].admCount;
-            else
-              adminYear2017.otherOpiateAdmin += dmhasAdmissionList[i].admCount;
-          }
-        }
+      getChart1(){
+        return this.getDeaths_Api().then(() => {
+            this.data.push(this.traceMaleDeaths);
+            this.data.push(this.traceFemaleDeaths);
+        })
+      },
+      getChart2(){
+        return this.getDMHAS_Api().then(() => {
+            this.data2.push(this.dmhasHeroinAdm);
+            this.data2.push(this.dmhasOtherOpiateAdm);
+        })
       }
    },
+
    mounted(){
 
    },
    created() {
-       return this.getDMHAS_Api().then(() => {
-          console.log(this.dmhasAdmissionList.length)
-        });
+      this.getChart1();
+      this.getChart2();
+
    }
 }
 </script>
