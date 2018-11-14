@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
-import HelloWorld from './components/HelloWorld.vue'
+import Home from './components/Home.vue'
 import RouteTester from './components/RouteTester.vue'
 import GraphData from './components/GraphData.vue'
 
@@ -14,7 +14,7 @@ Vue.config.productionTip = false
 
 // insert path here
 const routes = [
-  {path: '/', name: 'HelloWorld', component: HelloWorld },
+  {path: '/', name: 'Home', component: Home },
   {path: '/components/RouteTester.vue', name: 'RouteT', component: RouteTester},
   {path: '/components/GraphData.vue', name: 'GraphD', component: GraphData}
 ]
