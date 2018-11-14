@@ -5,6 +5,7 @@
          <p v-on:click="listOfAdmission=dmhasAdmissionList">Admissions: {{listOfAdmission}}</p>
       </div>
       <vue-plotly :data="data" :layout="layout" :options="options"/>
+      <vue-plotly :data="data2" :layout="layout2" :options="options2"/>
    </div>
 </template>
 
@@ -28,32 +29,52 @@ export default {
          listOfAdmission:1,
          data: [],
          layout: {},
-         options: {}
+         options: {},
+         data2: [],
+         layout2: {},
+         options2: {}
       }
    },
    computed: {
       ...mapState({
-         dmhasAdmissionList: state => state.service.dmhasAdmissionList,
-         trace1: state => state.service.trace1,
-         trace2: state => state.service.trace2,
+         deathsList: state => state.service.deathsList,
+         traceFemaleDeaths: state => state.service.traceFemaleDeaths,
+         traceMaleDeaths: state => state.service.traceMaleDeaths,
+         dmhasHeroinAdm: state => state.service.dmhasHeroinAdm,
+         dmhasOtherOpiateAdm: state => state.service.dmhasOtherOpiateAdm,
+
+
       }),
+
       ...mapGetters({
       }),
    },
    methods: {
       ...mapActions({
-         getDMHAS_Api: 'getDMHAS_Api'
-      })
+        getDeaths_Api: 'getDeaths_Api',
+        getDMHAS_Api: 'getDMHAS_Api'
+      }),
+      getChart1(){
+        return this.getDeaths_Api().then(() => {
+            this.data.push(this.traceMaleDeaths);
+            this.data.push(this.traceFemaleDeaths);
+        })
+      },
+      getChart2(){
+        return this.getDMHAS_Api().then(() => {
+            this.data2.push(this.dmhasHeroinAdm);
+            this.data2.push(this.dmhasOtherOpiateAdm);
+        })
+      }
    },
+
    mounted(){
 
    },
    created() {
-      return this.getDMHAS_Api().then(() => {
-         console.log(this.dmhasAdmissionList.length)
-         this.data.push(this.trace1);
-         this.data.push(this.trace2);
-      });
+      this.getChart1();
+      this.getChart2();
+
    }
 }
 </script>
